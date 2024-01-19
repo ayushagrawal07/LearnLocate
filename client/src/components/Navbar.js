@@ -10,11 +10,11 @@ import {
   Typography,
 } from '@mui/material';
 import { Lock, Menu } from '@mui/icons-material';
-import photoURL from '../profile.jpeg';
+// import photoURL from '../profile.jpeg';
 import { useValue } from '../context/ContextProvider';
 import UserIcons from './user/UserIcons.js';
 
-const user = { name: 'test', photoURL };
+// const user = { name: 'test', photoURL };
 
 const NavBar = () => {
   const {
@@ -51,7 +51,7 @@ const NavBar = () => {
             <Button
               color="inherit"
               startIcon={<Lock />}
-              onClick={() => dispatch({ type: 'UPDATE_USER', payload: user })}
+              onClick={() => dispatch({ type: 'OPEN_LOGIN' })}
             >
               Login
             </Button>

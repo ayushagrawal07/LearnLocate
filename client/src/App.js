@@ -1,12 +1,15 @@
 import React from 'react'
-import Navbar from "./components/Navbar";
-
+import Loading from './components/Loading';
+import Navbar from './components/Navbar';
+import Notification from './components/Notification';
+import Login from './components/user/Login';
 const App = () => {
   return (
     <>
-    <Navbar>
-
-    </Navbar>
+      <Loading />
+      <Notification /> 
+    <Login/>
+   <Navbar/>
     </>
   )
 }
