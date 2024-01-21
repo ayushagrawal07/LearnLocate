@@ -7,7 +7,7 @@ const initialState = {
     openLogin: false,
     loading: false,
     alert: { open: false, severity: 'info', message: '' },
-}
+};
 const Context=createContext(initialState);
 export const useValue = ()=>{
     return useContext(Context)
@@ -20,7 +20,7 @@ const ContextProvider = ({children}) => {
    {children}
 
    </Context.Provider>
-  )
-}
+  );
+};
 
 export default ContextProvider
