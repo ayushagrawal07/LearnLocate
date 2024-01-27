@@ -8,6 +8,7 @@ import {
   IconButton,
   Toolbar,
   Typography,
+  createTheme,
 } from '@mui/material';
 import { Lock, Menu } from '@mui/icons-material';
 // import photoURL from '../profile.jpeg';
@@ -15,7 +16,15 @@ import { useValue } from '../context/ContextProvider';
 import UserIcons from './user/UserIcons.js';
 
 // const user = { name: 'test', photoURL };
-
+const theme = createTheme({
+  palette: {
+    primary: {
+      // main: '#0e4686',
+      main: '#1565c0',
+     
+    }
+  }
+});
 const NavBar = () => {
   const {
     state: { currentUser },
@@ -23,7 +32,7 @@ const NavBar = () => {
   } = useValue();
 
   return (
-    <AppBar color="info">
+    <AppBar theme={theme}>
       <Container maxWidth="lg">
         <Toolbar disableGutters>
           <Box sx={{ mr: 1 }}>

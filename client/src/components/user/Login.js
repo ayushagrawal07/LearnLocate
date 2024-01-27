@@ -8,12 +8,23 @@ import {
   DialogTitle,
   IconButton,
   TextField,
+  createTheme,
 } from '@mui/material';
 import { useEffect, useRef, useState } from 'react';
 import { useValue } from '../../context/ContextProvider';
 import GoogleOneTapLogin from './GoogleOneTapLogin';
 import PasswordField from './PasswordField';
 import {register,login} from '../../actions/user';
+
+const theme = createTheme({
+  palette: {
+    primary: {
+      // main: '#0e4686',
+      main: '#1565c0',
+     
+    }
+  }
+});
 
 const Login = () => {
   const {
@@ -84,7 +95,7 @@ const Login = () => {
             <TextField
               autoFocus
               margin="normal"
-              variant="standard"
+              variant="outlined"
               id="name"
               label="Name"
               type="text"
@@ -97,7 +108,7 @@ const Login = () => {
           <TextField
             autoFocus={!isRegister}
             margin="normal"
-            variant="standard"
+            variant="outlined"
             id="email"
             label="Email"
             type="email"
@@ -115,7 +126,7 @@ const Login = () => {
           )}
         </DialogContent>
         <DialogActions sx={{ px: '19px' }}>
-          <Button type="submit" variant="contained" endIcon={<Send />}>
+          <Button type="submit" variant="contained" endIcon={<Send />} theme={theme}>
             Submit
           </Button>
         </DialogActions>
