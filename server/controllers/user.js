@@ -70,4 +70,4 @@ export const updateProfile = tryCatch(async(req,res) => {
   });
   res.status(200).json({success:true , result:{name,photoURL,token}});
 
-})
+});
