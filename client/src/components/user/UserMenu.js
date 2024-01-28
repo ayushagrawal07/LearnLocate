@@ -12,6 +12,7 @@ const UserMenu = ({ anchorUserMenu, setAnchorUserMenu }) => {
     dispatch,
     state: { currentUser },
   } = useValue();
+
   const handleCloseUserMenu = () => {
     setAnchorUserMenu(null);
   };

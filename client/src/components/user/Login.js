@@ -52,7 +52,7 @@ const Login = () => {
     if (!isRegister) return login({ email, password }, dispatch);
     const name = nameRef.current.value;
     const confirmPassword = confirmPasswordRef.current.value;
-    if (password !== confirmPassword) {
+    if (password !== confirmPassword){
       dispatch({
         type: 'UPDATE_ALERT',
         payload: {
