@@ -9,12 +9,13 @@ import {
   } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import AddLocation from './addLocation/AddLocation';
-import AddDetails from './addDetails.js/AddDetails';
+import AddDetails from './addDetails/AddDetails';
 import AddImages from './addimages/AddImages';
 import { useValue } from '../../context/ContextProvider';
 
 const AddCoaching = () => {
-  const {state:{images}} = useValue();
+  
+  const {state:{images,details}} = useValue();
     const [activeStep, setActiveStep] = useState(0);
     const [steps, setSteps] = useState([
       { label: 'Location', completed: false },
@@ -38,6 +39,13 @@ const AddCoaching = () => {
     const findUnfinished = () => {
       return steps.findIndex((step) => !step.completed);
     };
+    useEffect(() => {
+      if (details.title.length > 4 && details.description.length > 9) {
+        if (!steps[1].completed) setComplete(1, true);
+      } else {
+        if (steps[1].completed) setComplete(1, false);
+      }
+    }, [details]);
     useEffect(() => {
       if(images.length){
               if(!steps[2].completed)  setComplete(2,true)
