@@ -15,7 +15,7 @@ import { useValue } from '../../context/ContextProvider';
 
 const AddCoaching = () => {
   
-  const {state:{images,details}} = useValue();
+  const {state:{images,details,location}} = useValue();
     const [activeStep, setActiveStep] = useState(0);
     const [steps, setSteps] = useState([
       { label: 'Location', completed: false },
@@ -53,12 +53,20 @@ const AddCoaching = () => {
                if(steps[2].completed)  setComplete(2,false);
       }
     },[images])
+    useEffect(() => {
+      if(location.lng ||location.lat){
+              if(!steps[0].completed)  setComplete(0,true)
+      }else{
+               if(steps[0].completed)  setComplete(0,false);
+      }
+    },[location])
     const setComplete = (index, status) => {
       setSteps((steps) => {
         steps[index].completed = status;
         return [...steps];
       });
     };
+    
   return (
     <Container sx={{ my: 4 }}>
       <Stepper

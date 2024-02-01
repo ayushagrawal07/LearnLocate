@@ -28,9 +28,9 @@
 //       dispatch({ type: 'UPDATE_DETAILS', payload: { price: 15 } });
 //     }
 //   };
-//   // const handlePriceChange = (e) => {
-//   //   dispatch({ type: 'UPDATE_DETAILS', payload: { price:15 } });
-//   // };
+//   const handlePriceChange = (e) => {
+//     dispatch({ type: 'UPDATE_DETAILS', payload: { price:15 } });
+//   };
 //   return (
 //     <Stack
 //       sx={{
@@ -57,14 +57,14 @@
 //                 ),
 //               }}
 //               inputProps={{ type: 'number' }}
-//               // value={price}
-//               // onChange={handlePriceChange}
-//               // name="price"
+//               value={price}
+//               onChange={handlePriceChange}
+//               name="price"
 //             />
 //           )}
 //         </RadioGroup>
 //       </FormControl>
-//       {/* <InfoField
+//       <InfoField
 //         mainProps={{ name: 'title', label: 'Title', value: title }}
 //         minLength={5}
 //       />
@@ -76,7 +76,7 @@
 //         }}
 //         minLength={10}
 //         optionalProps={{ multiline: true, rows: 4 }}
-//       /> */}
+//       />
 //     </Stack>
 //   );
 // };
@@ -84,21 +84,16 @@
 // export default AddDetails;
 
 import {
-  FormControl,
-  FormControlLabel,
   FormLabel,
   InputAdornment,
-  Radio,
-  RadioGroup,
   Stack,
   TextField,
   Typography,
-  
-} from '@mui/material';
-import form from "@mui/material"
-import { useState } from 'react';
-import { useValue } from '../../../context/ContextProvider';
-import InfoField from './InfoField';
+} from "@mui/material";
+// import form from "@mui/material"
+// import { useState } from 'react';
+import { useValue } from "../../../context/ContextProvider";
+import InfoField from "./InfoField";
 
 const AddDetails = () => {
   const {
@@ -107,27 +102,27 @@ const AddDetails = () => {
     },
     dispatch,
   } = useValue();
-  const [costType, setCostType] = useState(price ? 1 : 0);
-  const handleCostTypeChange = (e) => {
-    const costType = Number(e.target.value);
-    setCostType(costType);
-    if (costType === 0) {
-      dispatch({ type: 'UPDATE_DETAILS', payload: { price: 0 } });
-    } else {
-      dispatch({ type: 'UPDATE_DETAILS', payload: { price: 15 } });
-    }
-  };
+  // const [costType, setCostType] = useState(price ? 1 : 0);
+  // const handleCostTypeChange = (e) => {
+  //   const costType = Number(e.target.value);
+  //   setCostType(costType);
+  //   if (costType === 0) {
+  //     dispatch({ type: 'UPDATE_DETAILS', payload: { price: 0 } });
+  //   } else {
+  //     dispatch({ type: 'UPDATE_DETAILS', payload: { price: 15 } });
+  //   }
+  // };
 
   const handlePriceChange = (e) => {
     const newPrice = parseFloat(e.target.value);
-    dispatch({ type: 'UPDATE_DETAILS', payload: { price: newPrice } });
+    dispatch({ type: "UPDATE_DETAILS", payload: { price: newPrice } });
   };
 
   return (
     <Stack
       sx={{
-        alignItems: 'center',
-        '& .MuiTextField-root': { width: '100%', maxWidth: 500, m: 1 },
+        alignItems: "center",
+        "& .MuiTextField-root": { width: "100%", maxWidth: 500, m: 1 },
       }}
     >
       <form>
@@ -137,35 +132,38 @@ const AddDetails = () => {
           row
           onChange={handleCostTypeChange}
         > */}
-          <FormLabel value={1} 
-        //  control={<Radio />}
+        <FormLabel
+          value={1}
+          //  control={<Radio />}
+        />
+        <Typography>Nominal Fees</Typography>
+        {
+          <TextField
+            sx={{ width: "16ch !important" }}
+            variant="standard"
+            InputProps={{
+              startAdornment: (
+                <InputAdornment position="start">Rs</InputAdornment>
+              ),
+              
+            }}
+            inputProps={{ type: "number" }}
+            value={price} // Controlled component
+            onChange={handlePriceChange}
+            name="price"
+          
           />
-          <Typography>Nominal Fees</Typography>
-          {
-            <TextField
-              sx={{ width: '16ch !important' }}
-              variant="standard"
-              InputProps={{
-                startAdornment: (
-                  <InputAdornment position="start">Rs</InputAdornment>
-                ),
-              }}
-              inputProps={{ type: 'number'}}
-              value={price} // Controlled component
-              onChange={handlePriceChange}
-              name="price"
-            />
-          }
-      {/* /</RadioGroup> */}
+        }
+        {/* /</RadioGroup> */}
       </form>
       <InfoField
-        mainProps={{ name: 'title', label: 'Title', value: title }}
+        mainProps={{ name: "title", label: "Title", value: title }}
         minLength={5}
       />
       <InfoField
         mainProps={{
-          name: 'description',
-          label: 'Description',
+          name: "description",
+          label: "Description",
           value: description,
         }}
         minLength={10}
