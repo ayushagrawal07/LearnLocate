@@ -9,6 +9,7 @@ import {
 import ClusterMap from './map/ClusterMap';
 import Coachings from './coachings/Coachings';
 import AddCoaching from './addcoaching/AddCoaching';
+import Protected from './protected/Protected';
 
   const BottomNav = () => {
     const [value, setValue] = useState(0);
@@ -24,7 +25,11 @@ import AddCoaching from './addcoaching/AddCoaching';
           {
             0: <ClusterMap />,
             1: <Coachings />,
-            2: <AddCoaching />,
+            2: (
+            <Protected>
+              <AddCoaching  setPage={setValue}/>
+              </Protected>
+            ),
           }[value]
         }
         <Paper

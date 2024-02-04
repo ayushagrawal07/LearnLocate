@@ -1,9 +1,9 @@
 import express from 'express';
 import dotenv from 'dotenv';
-import roomRouter from './routes/roomRouter.js';
 import cors from 'cors';
 import mongoose from 'mongoose';
 import userRouter from './routes/userRouter.js';
+import coachingRouter from './routes/coachingRouter.js';
 
 dotenv.config();
 
@@ -32,7 +32,7 @@ app.use(
  
 app.use(express.json({ limit: '10mb' }));
 app.use('/user', userRouter);
-app.use('/room', roomRouter);
+app.use('/coaching', coachingRouter);
 app.use('/', (req, res) => res.json({ message: 'Welcome to our API' }));
 app.use((req, res) =>
   res.status(404).json({ success: false, message: 'Not Found' })

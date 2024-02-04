@@ -1,4 +1,4 @@
-const tryCatch = (controller) => {
+const TryCatch = (controller) => {
     return async (req, res) => {
       try {
         await controller(req, res);
@@ -12,4 +12,4 @@ const tryCatch = (controller) => {
     };
   };
   
-  export default tryCatch;
+  export default TryCatch;
