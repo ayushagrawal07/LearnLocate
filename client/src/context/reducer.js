@@ -13,25 +13,29 @@ const reducer = (state, action) => {
     case "UPDATE_PROFILE":
       return { ...state, profile: action.payload };
     case "UPDATE_USER":
+      // localStorage.setItem('currentUser', JSON.stringify(action.payload));
       return { ...state, currentUser: action.payload };
     case "UPDATE_IMAGES":
-      return { ...state, images:[...state.images , action.payload]};
+      return { ...state, images: [...state.images, action.payload] };
     case "DELETE_IMAGE":
-      return { ...state, images:state.images.filter(image=>image !== action.payload)};
-      case "UPDATE_DETAILS":
-        return { ...state, details:{...state.details,...action.payload}};  
-    
-      case "UPDATE_LOCATION":
-        return { ...state, location:action.payload};  
-        case 'RESET_COACHING':
-          return {
-            ...state,
-            images: [],
-            details: { title: '', description: '', price: 0 },
-            location: { lng: 0, lat: 0 },
-          };
-          case 'UPDATE_COACHINGS':
-      return { ...state, rooms: action.payload };   
+      return {
+        ...state,
+        images: state.images.filter((image) => image !== action.payload),
+      };
+    case "UPDATE_DETAILS":
+      return { ...state, details: { ...state.details, ...action.payload } };
+
+    case "UPDATE_LOCATION":
+      return { ...state, location: action.payload };
+    case "RESET_COACHING":
+      return {
+        ...state,
+        images: [],
+        details: { title: "", description: "", price: 0 },
+        location: { lng: 0, lat: 0 },
+      };
+    case "UPDATE_COACHINGS":
+      return { ...state, coachings: action.payload };
     default:
       throw new Error("No matched action");
   }

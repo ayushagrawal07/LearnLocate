@@ -3,6 +3,8 @@ import bcrypt from 'bcryptjs';
 import User from '../models/User.js';
 import jwt from 'jsonwebtoken';
 import tryCatch from './utils/TryCatch.js';
+import Coaching from '../models/Coaching.js';
+
 
 export const register = tryCatch(async (req, res) => {
   const { name, email, password } = req.body;
@@ -63,7 +65,7 @@ export const updateProfile = tryCatch(async(req,res) => {
   const updatedUser = await User.findByIdAndUpdate(req.user.id , req.body , {new:true})
   const {_id:id , name , photoURL} = updatedUser
 
-  //To do :update all the rooms records added by this user
+ await Coaching.updateMany({uid:id} , {uName:name , uPhoto:photoURL});
 
   const token = jwt.sign({ id, name, photoURL }, process.env.JWT_SECRET, {
     expiresIn: '1h',
