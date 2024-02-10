@@ -14,6 +14,8 @@ import { Lock, Menu } from '@mui/icons-material';
 // import photoURL from '../profile.jpeg';
 import { useValue } from '../context/ContextProvider';
 import UserIcons from './user/UserIcons.js';
+import Sidebar from './sidebar/Sidebar.js';
+import { useState } from 'react';
 
 // const user = { name: 'test', photoURL };
 const theme = createTheme({
@@ -30,6 +32,7 @@ const NavBar = () => {
     state: { currentUser },
     dispatch,
   } = useValue();
+  const [isOpen,setIsOpen]=useState(false);
 
   return (
     <>
@@ -38,7 +41,7 @@ const NavBar = () => {
       <Container maxWidth="lg">
         <Toolbar disableGutters>
           <Box sx={{ mr: 1 }}>
-            <IconButton size="large" color="inherit">
+            <IconButton size="large" color="inherit" onClick ={()=>setIsOpen(true)}>
               <Menu />
             </IconButton>
           </Box>
@@ -73,6 +76,7 @@ const NavBar = () => {
       </Container>
     </AppBar>
     </Toolbar>
+    <Sidebar {...{isOpen,setIsOpen}}></Sidebar>
     </>
   );
 };
