@@ -14,7 +14,8 @@ const initialState = {
     coachings:[],
     priceFilter : 0,
     addressFilter:null,
-    filterCoachings:[]
+    filterCoachings:[],
+    coaching:null,
 };
 
 const Context=createContext(initialState);

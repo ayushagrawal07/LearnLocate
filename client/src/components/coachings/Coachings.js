@@ -15,6 +15,7 @@ import { StarBorder } from '@mui/icons-material';
 const Coachings = () => {
   const {
     state: { filterCoachings },
+    dispatch
   } = useValue();
   return (
     <Container>
@@ -47,6 +48,7 @@ const Coachings = () => {
                 alt={coaching.title}
                 loading="lazy"
                 style={{ cursor: 'pointer' }}
+                onClick={() => dispatch({type:'UPDATE_COACHING' , payload:coaching})}
               />
               <ImageListItemBar
                 title={coaching.title}

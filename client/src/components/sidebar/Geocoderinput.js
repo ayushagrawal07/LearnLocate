@@ -1,4 +1,4 @@
-import MapboxGeocoder from '@mapbox/mapbox-gl-geocoder';
+ import MapboxGeocoder from '@mapbox/mapbox-gl-geocoder';
 import { useEffect } from 'react';
 import { useValue } from '../../context/ContextProvider';
 

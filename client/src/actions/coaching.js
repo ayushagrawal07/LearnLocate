@@ -19,7 +19,7 @@ export const createCoaching = async (coaching, currentUser, dispatch,setPage) =>
     });
     dispatch({ type: 'RESET_COACHING' });
     setPage(0);
-    
+    dispatch({type:'UPDATE_COACHING' , payload:result})
   }
 
   dispatch({ type: 'END_LOADING' });

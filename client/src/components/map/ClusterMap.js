@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useValue } from "../../context/ContextProvider";
 import { getCoachings } from "../../actions/coaching";
-import ReactMapGL, { Marker } from "react-map-gl";
+import ReactMapGL, { Marker, Popup } from "react-map-gl";
 import Supercluster from 'supercluster';
 import './cluster.css';
 import { Avatar, Paper, Tooltip } from '@mui/material';
 import GeocoderInput from "../sidebar/Geocoderinput";
-
+import PopupCoaching from './PopupCoaching';
 const supercluster = new Supercluster({
   radius:75,
   maxZoom:20
@@ -22,6 +22,7 @@ const [points,setPoints] = useState([]);
 const [clusters , setClusters] = useState([]);
 const [bounds,setBounds] = useState([-180 , -85 , 180 , 85])
 const [zoom , setZoom] = useState(0)
+const [popupInfo , setPopupInfo] = useState(null);
   useEffect(() => {
     getCoachings(dispatch);
   }, []);
@@ -117,12 +118,25 @@ useEffect(() => {
                 src={cluster.properties.uPhoto}
                 component={Paper}
                 elevation={2}
+                onClick={() => setPopupInfo(cluster.properties)}
               />
             </Tooltip>
           </Marker>
         );
       })}
       <GeocoderInput/>
+      {popupInfo  && (
+        <Popup
+         longitude={popupInfo.lng}
+         latitude={popupInfo.lat}
+         maxWidth="auto"
+         closeOnClick = {false}
+         focusAfterOpen={false}
+         onClose={() => setPopupInfo(null)}
+        >
+<PopupCoaching {...{ popupInfo }} />
+        </Popup>
+      )}
     </ReactMapGL>
     
   );

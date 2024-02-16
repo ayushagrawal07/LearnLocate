@@ -65,7 +65,7 @@ export const updateProfile = tryCatch(async(req,res) => {
   const updatedUser = await User.findByIdAndUpdate(req.user.id , req.body , {new:true})
   const {_id:id , name , photoURL} = updatedUser
 
- await Coaching.updateMany({uid:id} , {uName:name , uPhoto:photoURL});
+  await Coaching.updateMany({uid:id} , {uName:name , uPhoto:photoURL});
 
   const token = jwt.sign({ id, name, photoURL }, process.env.JWT_SECRET, {
     expiresIn: '1h',

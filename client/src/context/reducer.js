@@ -35,39 +35,63 @@ const reducer = (state, action) => {
         location: { lng: 0, lat: 0 },
       };
     case "UPDATE_COACHINGS":
-      return { ...state, coachings: action.payload, addressFilter: null, priceFilter: 0, filterCoachings: action.payload }
+      return {
+        ...state,
+        coachings: action.payload,
+        addressFilter: null,
+        priceFilter: 0,
+        filterCoachings: action.payload,
+      };
     case "FILTER_PRICE":
       return {
-        ...state, priceFilter: action.payload, filterCoachings: applyfilter(
-          state.coachings, state.addressFilter, action.payload
-        )
+        ...state,
+        priceFilter: action.payload,
+        filterCoachings: applyfilter(
+          state.coachings,
+          state.addressFilter,
+          action.payload
+        ),
       };
     case "FILTER_ADDRESS":
       return {
-        ...state, addressFilter: action.payload, filterCoachings: applyfilter(
-          state.coachings, state.priceFilter, action.payload
-        )
+        ...state,
+        addressFilter: action.payload,
+        filterCoachings: applyfilter(
+          state.coachings,
+          state.priceFilter,
+          action.payload
+        ),
       };
-    case 'CLEAR_ADDRESS':
-      return { ...state, addressFilter: null, priceFilter: 0, filterCoachings: state.coachings };
+    case "CLEAR_ADDRESS":
+      return {
+        ...state,
+        addressFilter: null,
+        priceFilter: 0,
+        filterCoachings: state.coachings,
+      };
+    case 'UPDATE_COACHING':
+      return {...state , coaching:action.payload};
     default:
       throw new Error("No matched action");
   }
 };
 export default reducer;
 const applyfilter = (coachings, address, price) => {
-  let filterCoachings = coachings
+  let filterCoachings = coachings;
   if (address) {
     const { lng, lat } = address;
-    filterCoachings = filterCoachings.filter(coaching => {
-      const lngDifference = lng > coaching.lng ? lng - coaching.lng : coaching.lng - lng
-      const latDifference = lat > coaching.lat ? lat - coaching.lat : coaching.lat - lat
+    filterCoachings = filterCoachings.filter((coaching) => {
+      const lngDifference =
+        lng > coaching.lng ? lng - coaching.lng : coaching.lng - lng;
+      const latDifference =
+        lat > coaching.lat ? lat - coaching.lat : coaching.lat - lat;
       return lngDifference <= 1 && latDifference <= 1;
-    })
+    });
   }
   if (price < 500000) {
-    filterCoachings = filterCoachings.filter((coaching) => coaching.price <= price)
-
+    filterCoachings = filterCoachings.filter(
+      (coaching) => coaching.price <= price
+    );
   }
   return filterCoachings;
-}
+};
